@@ -1,0 +1,112 @@
+<!doctype html>
+<head>
+	<title>Python Flask - Video Upload and Play Example</title>
+	<link rel="stylesheet" href="./upload.css">
+	<style>
+		body{
+			background-color: lavender;
+		}
+		input#Analyze{
+			background-color: white;
+			color: #3f1e8a;
+			padding: .4em .4em;
+			border-radius: .8em;
+			border: 2px solid;
+		}
+		input#Analyze:hover{
+			background-color: #3f1e8a;
+			color: white;
+		}
+		input.upload{
+			background-color: white;
+			color: #724b0d;
+			padding: .4em .4em;
+			border-radius: .8em;
+			border: 2px solid;
+		}
+		input.upload:hover{
+			background-color: #724b0d;
+			color: white;
+		}
+	h1#title{
+		font-size: 40px;
+		color: rgb(32, 0, 66);
+		text-align: center;
+		font-family: sans-serif;
+	}
+	h2{
+		font-size: 25px;
+	}
+	main{
+		/* align-items: center; */
+		position: absolute;
+		width: 100%;
+		display: grid;
+		justify-content: center;
+		/* padding-left: 30px; */
+	}
+	p#res{
+		font-size: 35px;
+		font-weight: 400;
+	}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<h1 id="title">DeepFake Video Detection</h1>
+	</div>
+	<main>
+<h2 >Select a video to upload and play</h2>
+<p id="msg">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+{% if filename %}
+	<div style="margin: 10px auto;">
+		<video autoplay="autoplay" controls="controls" preload="preload" width="400px" height="300px">
+			<source src="{{ url_for('display_video', filename=filename) }}" type="video/mp4"></source>
+		</video>
+	</div>
+{% endif %}
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input class="upload" type="submit" value="Upload">
+	</p>
+	<!-- <button >Analyze</button> -->
+</form>
+{% if filename %}
+<form method="get" action="{{ url_for('sequence_prediction', filename=filename) }}" enctype="multipart/form-data">
+	<p>
+		<label for="predict">Click on Analyze to check</label>
+		<input id="Analyze" type="submit" name="predict" value="Analyze">
+	</p>
+</form>
+{% endif %}
+
+<br>
+<p id="res">{{prediction}}</p>
+</main>
+<script>
+	let res = document.getElementById('res');
+	// alert(res.innerHTML)
+	if(res.innerHTML === 'REAL'){
+		res.style.color='green';
+	}
+	else{
+		res.style.color='red';
+	}
+</script>
+</body>
+</html>
