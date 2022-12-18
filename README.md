@@ -1,6 +1,7 @@
 # DeepFake_Detection
 ## Table of Contents:
 - What is DeepFake?
+- Demo of the Project
 - Impact of DeepFake Videos
 - Project Objectives
 - Project Pipeline
@@ -21,6 +22,9 @@ Converter.
 - Many Deep Fakes are done by superimposing or combining existing images into source
 images and videos using Generative Adversarial Networks (GAN) and these networks
 are developing better every day
+
+## Demo of the Project
+
 
 ## Impact of DeepFake Videos
 - DeepFakes can be used to create fake news, celebrity unusual videos, politician
