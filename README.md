@@ -152,9 +152,5 @@ using this approach. Our model has high precision for FAKE videos which is obtai
 more FAKE videos during the training of the Model.
 
 
-## Team :
-1.  [Balaji Kartheek](https://github.com/Balaji-Kartheek)
-2.  [Aaron Dsouza](https://github.com/DsouzaAaron)
-
 
 
